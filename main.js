@@ -100,8 +100,12 @@ function computeDistances(coordinates){
  }
 
 function findDist(x1,y1,x2,y2){
+    if(map[x1][y1] == 1 || map[x2][y2]==1){
         let a = finder.findPath(x1,y1,x2,y2,grid).length;
         console.log(a);
+    }else{
+      console.error("coordinates not accesssible")
+    }
 }
 
 
