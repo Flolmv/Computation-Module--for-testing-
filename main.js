@@ -15,44 +15,45 @@ const v_tugger_max = 1.0; // m/s
 const v_bmw_max = 2.0;
 const convertConst = 0.05; /*multiplication constant to convert from number of "map tiles" to meters 
                             -> must still be changed to actual value -> five centimeters per occupancy block (pixel)*/
+<<<<<<< HEAD
                          
+=======
+                          
+>>>>>>> b38a01f8c868be8f98e6081e1fc4b2c6af50ecf0
 let coordinates = 
 {
-    startX: 315,
-    startY: 420,
-    exchangeX: 315,
-    exchangeY: 490,
-    endX: 300,
-    endY: 484,
-    bmwX: 325,
-    bmwY: 440,
-    tuggerX: 330,
-    tuggerY: 500
+    startY: 315,
+    startX: 420,
+    exchangeY: 315,
+    exchangeX: 490,
+    endY: 300,
+    endX: 484,
+    bmwY: 325,
+    bmwX: 440,
+    tuggerY: 330,
+    tuggerX: 500
 };
 
-
-
+let foo = computeDistances(coordinates);
 
 function computeDistances(coordinates){
     //compute Distances between each robot and start point and each robot and exchange point; next_step: retrieving distance estimation from robot as well -> more precise (Update: not possible)
     //Instead we will compute the distances using A* or Dijkstra; issue -> will only output path coordinates not distance (Distance computation can become costly)
    
-    
-   
     distances = {
-        tugger_to_start: finder.findPath(coordinates.tuggerX,coordinates.tuggerY, coordinates.startX, coordinates.startY, grid).length * convertConst, //multiply by constant for meters
-        bmw_to_start: finder.findPath(coordinates.bmwX,coordinates.bmwY, coordinates.startX, coordinates.startY, grid).length * convertConst,
-        start_to_exchange: finder.findPath(coordinates.startX,coordinates.startY, coordinates.exchangeX, coordinates.exchangeY, grid).length * convertConst,
-        tugger_to_exchange: finder.findPath(coordinates.tuggerX,coordinates.tuggerY, coordinates.exchangeX, coordinates.exchangeY, grid).length * convertConst,
-        bmw_to_exchange: finder.findPath(coordinates.bmwX,coordinates.bmwY, coordinates.exchangeX, coordinates.exchangeY, grid).length * convertConst,
-        exchange_to_end: finder.findPath(coordinates.exchangeX,coordinates.exchangeY, coordinates.endX, coordinates.endY, grid).length * convertConst
+        tugger_to_start: findDist(coordinates.tuggerX,coordinates.tuggerY, coordinates.startX, coordinates.startY) * convertConst, //multiply by constant for meters
+        bmw_to_start: findDist(coordinates.bmwX,coordinates.bmwY, coordinates.startX, coordinates.startY) * convertConst,
+        start_to_exchange: findDist(coordinates.startX,coordinates.startY, coordinates.exchangeX, coordinates.exchangeY) * convertConst,
+        tugger_to_exchange: findDist(coordinates.tuggerX,coordinates.tuggerY, coordinates.exchangeX, coordinates.exchangeY) * convertConst,
+        bmw_to_exchange: findDist(coordinates.bmwX,coordinates.bmwY, coordinates.exchangeX, coordinates.exchangeY) * convertConst,
+        exchange_to_end: findDist(coordinates.exchangeX,coordinates.exchangeY, coordinates.endX, coordinates.endY) * convertConst
 
        };
 
        return distances;
 }
 
-    
+   
 
  
  function timeEstimation(distances){
@@ -101,7 +102,7 @@ function computeDistances(coordinates){
 
 function findDist(x1,y1,x2,y2){
     if(map[y1][x1] == 1 || map[y2][x2]==1){
-        let a = finder.findPath(y1,x1,y2,x2,grid).length;
+        let a = finder.findPath(y1,x1,y2,x2,new PF.Grid(map)).length;
         console.log(a);
     }else{
       console.error("coordinates not accesssible")
