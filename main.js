@@ -15,7 +15,7 @@ const v_tugger_max = 1.0; // m/s
 const v_bmw_max = 2.0;
 const convertConst = 0.05; /*multiplication constant to convert from number of "map tiles" to meters 
                             -> must still be changed to actual value -> five centimeters per occupancy block (pixel)*/
-                          
+ /*                         
 let coordinates = 
 {
     startX: 315,
@@ -31,7 +31,7 @@ let coordinates =
 };
 
 
-let foo = computeDistances(coordinates)
+
 
 function computeDistances(coordinates){
     //compute Distances between each robot and start point and each robot and exchange point; next_step: retrieving distance estimation from robot as well -> more precise (Update: not possible)
@@ -98,10 +98,10 @@ function computeDistances(coordinates){
  
    return [pickVehicle(costs),cache];
  }
-
+*/
 function findDist(x1,y1,x2,y2){
-    if(map[x1][y1] == 1 || map[x2][y2]==1){
-        let a = finder.findPath(x1,y1,x2,y2,grid).length;
+    if(map[y1][x1] == 1 || map[y2][x2]==1){
+        let a = finder.findPath(y1,x1,y2,x2,grid).length;
         console.log(a);
     }else{
       console.error("coordinates not accesssible")
