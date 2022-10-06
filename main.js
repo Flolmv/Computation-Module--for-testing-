@@ -2,12 +2,7 @@ const { Grid } = require('pathfinding');
 const PF = require('pathfinding');
 const {map} = require("./map"); 
 
-var easystarjs = require('easystarjs');
-var easystar = new easystarjs.js();
-easystar.setGrid(map);
-easystar.setAcceptableTiles([0]);
-
-const grid = new PF.Grid(map); 
+ 
 const finder = new PF.AStarFinder();
 
 
@@ -15,26 +10,22 @@ const v_tugger_max = 1.0; // m/s
 const v_bmw_max = 2.0;
 const convertConst = 0.05; /*multiplication constant to convert from number of "map tiles" to meters 
                             -> must still be changed to actual value -> five centimeters per occupancy block (pixel)*/
-<<<<<<< HEAD
-                         
-=======
                           
->>>>>>> b38a01f8c868be8f98e6081e1fc4b2c6af50ecf0
 let coordinates = 
 {
-    startY: 315,
-    startX: 420,
-    exchangeY: 315,
-    exchangeX: 490,
-    endY: 300,
-    endX: 484,
-    bmwY: 325,
-    bmwX: 440,
-    tuggerY: 330,
-    tuggerX: 500
+    startX: 566,
+    startY: 393,
+    exchangeX: 563,
+    exchangeY: 415,
+    endX: 582,
+    endY: 413,
+    bmwX: 588,
+    bmwY: 393,
+    tuggerX: 583,
+    tuggerY: 362
 };
-
 let foo = computeDistances(coordinates);
+console.log(foo);
 
 function computeDistances(coordinates){
     //compute Distances between each robot and start point and each robot and exchange point; next_step: retrieving distance estimation from robot as well -> more precise (Update: not possible)
@@ -101,16 +92,16 @@ function computeDistances(coordinates){
  }
 
 function findDist(x1,y1,x2,y2){
-    if(map[y1][x1] == 1 || map[y2][x2]==1){
+    if(map[x1][y1] == 1 || map[x2][y2]==1){
         let a = finder.findPath(y1,x1,y2,x2,new PF.Grid(map)).length;
-        console.log(a);
+        return a;
     }else{
-      console.error("coordinates not accesssible")
+      console.error("coordinates not accesssible") 
     }
 }
 
 
  
-findDist(722,464,714,454);
+
  
  
